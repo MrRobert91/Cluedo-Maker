@@ -41,7 +41,19 @@ async def upload_project_file(
         participant = Participant(
             event_id=new_event.id,
             name=p_data["name"],
-            notes=p_data.get("notes")
+            email=p_data.get("email"),
+            phone=p_data.get("phone"),
+            photo_url=p_data.get("photo_url"),
+            is_improviser=p_data.get("is_improviser"),
+            tone_preference=p_data.get("tone_preference"),
+            test_preference=p_data.get("test_preference"),
+            wants_secret_objectives=p_data.get("wants_secret_objectives"),
+            costume_level=p_data.get("costume_level"),
+            setting_preference=p_data.get("setting_preference"),
+            avoid_topics=p_data.get("avoid_topics"),
+            special_requests=p_data.get("special_requests"),
+            additional_info=p_data.get("additional_info"),
+            attendance_confirmed=p_data.get("attendance_confirmed"),
         )
         session.add(participant)
     
