@@ -1,12 +1,22 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
-from app.db.session import create_db_and_tables
-from app.api.routers import events
-from app.core.config import settings
-import os
+from app.core.logging_config import setup_logging, get_logger
+import time
+from fastapi import Request
+
+setup_logging()
+logger = get_logger("app.main")
 
 app = FastAPI(title=settings.PROJECT_NAME)
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    duration = time.time() - start_time
+    logger.info(
+        f"Method: {request.method} Path: {request.url.path} "
+        f"Status: {response.status_code} Duration: {duration:.4f}s"
+    )
+    return response
 
 app.add_middleware(
     CORSMiddleware,

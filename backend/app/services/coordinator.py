@@ -1,9 +1,7 @@
-from sqlmodel import Session, select
-from app.models.all_models import Event, EventStatus, Character, Faction, Item, Puzzle, Objective, Participant
-from app.services.agents.world_builder import WorldBuilderAgent
-# from app.services.agents.character_generator import CharacterGeneratorAgent # To be implemented
-# from app.services.agents.items_puzzles import ItemsPuzzlesAgent # To be implemented
+from app.core.logging_config import get_logger
 import asyncio
+
+logger = get_logger("app.services.coordinator")
 
 async def start_generation_task(event_id: int, session: Session):
     # Re-fetch session/event securely inside the async task if needed, 
@@ -22,7 +20,7 @@ async def start_generation_task(event_id: int, session: Session):
             db.commit()
             
             # 1. World Building
-            print(f"Starting World Building for {event.name}")
+            logger.info(f"Starting World Building for {event.name}")
             wb = WorldBuilderAgent()
             world_data = await wb.generate(event.theme, event.tone)
             event.intro_narrative = world_data.get("intro", "")
@@ -69,10 +67,9 @@ async def start_generation_task(event_id: int, session: Session):
             event.status = EventStatus.READY
             db.add(event)
             db.commit()
-            print("Generation Complete")
-            
+            logger.info("Generation Complete")
         except Exception as e:
-            print(f"Error generating event: {e}")
+            logger.error(f"Error generating event {event_id}: {e}", exc_info=True)
             event.status = EventStatus.ERROR
             db.add(event)
             db.commit()
