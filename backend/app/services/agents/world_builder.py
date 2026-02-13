@@ -1,3 +1,7 @@
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import JsonOutputParser
+from app.core.config import settings
 from app.core.logging_config import get_logger
 import json
 
