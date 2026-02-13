@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from app.db.session import create_db_and_tables
-from app.api.routers import events
 from app.core.config import settings
 from app.core.logging_config import setup_logging, get_logger
 import os
@@ -32,10 +31,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from app.api.routers import events, projects
+from app.api.routers import projects
 
 # API Routers
-app.include_router(events.router, prefix="/api/events", tags=["events"])
 app.include_router(projects.router, prefix="/api/projects", tags=["projects"])
 
 # Mount static files (uploaded photos, generated pdfs/images)

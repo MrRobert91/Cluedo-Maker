@@ -65,3 +65,13 @@ async def upload_project_file(
         "suggested_factions_count": suggested_factions,
         "message": "Project created successfully from Excel."
     }
+
+@router.get("/{project_id}")
+async def get_project(
+    project_id: int,
+    session: Session = Depends(get_session)
+) -> Dict[str, Any]:
+    project = session.get(Event, project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return project.model_dump()

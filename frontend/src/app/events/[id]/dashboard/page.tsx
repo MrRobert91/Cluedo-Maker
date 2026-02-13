@@ -1,85 +1,84 @@
-"use client";
+'use client';
+
 import { useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import axios from 'axios';
-import { useParams } from 'next/navigation';
 
-export default function Dashboard() {
-  const { id } = useParams(); // event id
-  const [event, setEvent] = useState(null);
-  const [refreshInterval, setRefreshInterval] = useState(1000);
+interface Project {
+  id: number;
+  name: string;
+  theme: string;
+  tone: string;
+  num_participants: number;
+  status: string;
+}
 
-  // Ensure we point to the /api/events endpoint correctly
+export default function DashboardPage() {
+  const params = useParams();
+  const router = useRouter();
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  // Use env variable or fallback
   const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
-  const API_URL = rawApiUrl.endsWith("/events") ? rawApiUrl : `${rawApiUrl}/events`;
+  const BASE_API_URL = rawApiUrl.replace(/\/events\/?$/, "");
 
   useEffect(() => {
-    if (!id) return;
-    const fetchEvent = async () => {
+    if (!params.id) return;
+
+    const fetchProject = async () => {
       try {
-        const res = await axios.get(`${API_URL}/${id}`);
-        setEvent(res.data);
-        if (res.data.status === 'ready' || res.data.status === 'error') {
-          setRefreshInterval(null); // Stop polling
-        }
-      } catch (e) {
-        console.error(e);
+        // Note: We need to implement GET /api/projects/{id} in backend
+        const response = await axios.get(`${BASE_API_URL}/projects/${params.id}`);
+        setProject(response.data);
+      } catch (err: any) {
+        console.error(err);
+        setError('Failed to load project details.');
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchEvent();
-    const timer = refreshInterval ? setInterval(fetchEvent, refreshInterval) : null;
-    return () => clearInterval(timer);
-  }, [id, refreshInterval]);
+    fetchProject();
+  }, [params.id, BASE_API_URL]);
 
-  if (!event) return <div className="p-10 text-white">Loading...</div>;
+  if (loading) return <div className="text-white text-center mt-20">Loading project...</div>;
+  if (error) return <div className="text-red-400 text-center mt-20">{error}</div>;
+  if (!project) return <div className="text-white text-center mt-20">Project not found</div>;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-8">
+    <div className="min-h-screen bg-gray-900 text-white p-8">
       <div className="max-w-4xl mx-auto">
-        <header className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold">{event.name}</h1>
-            <p className="text-slate-400">{event.theme} • {event.tone}</p>
-          </div>
-          <div className={`px-4 py-2 rounded-full capitalize font-bold ${event.status === 'ready' ? 'bg-green-500/20 text-green-400' :
-            event.status === 'generating' ? 'bg-yellow-500/20 text-yellow-400 animate-pulse' :
-              'bg-slate-700'
-            }`}>
-            {event.status}
-          </div>
-        </header>
+        <h1 className="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+          {project.name}
+        </h1>
 
-        {event.status === 'generating' && (
-          <div className="text-center py-20">
-            <div className="text-2xl mb-4">🔮 Concocting the mystery...</div>
-            <p className="text-slate-500">The AI agents are building factions, writing secrets, and planting clues.</p>
-          </div>
-        )}
-
-        {event.status === 'ready' && (
-          <div className="grid gap-6">
-            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-              <h2 className="text-xl font-bold mb-4">Downloads</h2>
-              <div className="flex gap-4">
-                <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-bold">
-                  📥 Public Packet (Introduction & Bios)
-                </button>
-                <button className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-bold">
-                  🗂️ Organizer Dossier (Secrets & Solutions)
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-              <h2 className="text-xl font-bold mb-4">Participants & Roles</h2>
-              {/* Placeholder for now as the simple endpoint doesn't return full relation tree yet, usually you'd need a separate fetch for participants/characters */}
-              <div className="text-slate-400">
-                {event.num_participants} players ready. (Detailed character view coming in next implementation block)
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            <h2 className="text-xl font-semibold mb-4 text-purple-300">Project Details</h2>
+            <div className="space-y-2 text-gray-300">
+              <p><span className="font-medium text-gray-500">Status:</span> {project.status}</p>
+              <p><span className="font-medium text-gray-500">Participants:</span> {project.num_participants}</p>
+              <p><span className="font-medium text-gray-500">Theme:</span> {project.theme}</p>
+              <p><span className="font-medium text-gray-500">Tone:</span> {project.tone}</p>
             </div>
           </div>
-        )}
+
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 flex flex-col justify-center items-center">
+            <h2 className="text-xl font-semibold mb-4 text-pink-300">Configuration</h2>
+            <p className="text-gray-400 text-center mb-6">
+              Configure factions and other settings before generating the game.
+            </p>
+            <button
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-bold hover:shadow-lg transition-all"
+              onClick={() => alert("Configuration Wizard coming soon!")}
+            >
+              Configure Game
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  )
+  );
 }
