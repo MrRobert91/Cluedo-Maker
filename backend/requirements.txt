@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+alembic
+pydantic
+pydantic-settings
+python-multipart
+openai
+langchain
+langchain-openai
+weasyprint
+jinja2
+httpx
+pytest
