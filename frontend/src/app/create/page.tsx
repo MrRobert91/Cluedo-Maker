@@ -1,146 +1,120 @@
-"use client";
+'use client';
+
 import { useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
-export default function CreateEvent() {
+export default function CreateProjectPage() {
   const router = useRouter();
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    name: 'Mystery Night',
-    theme: 'Victorian Steampunk',
-    tone: 'mystery',
-    participants: [] // Will hold strings
-  });
-  const [tempParticipant, setTempParticipant] = useState('');
+  const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  // Use env variable or fallback to 127.0.0.1
+  // Use env variable or fallback
   const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
-  const API_URL = rawApiUrl.endsWith("/events") ? rawApiUrl : `${rawApiUrl}/events`;
+  // Determine base API URL (remove /events suffix if present from previous config)
+  const BASE_API_URL = rawApiUrl.replace(/\/events\/?$/, "");
 
-  const handleCreate = async () => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+      setError('');
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!file) {
+      setError('Please select an Excel file first.');
+      return;
+    }
+
     setIsLoading(true);
+    setError('');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
     try {
-      // 1. Create Event
-      const res = await axios.post(`${API_URL}/`, {
-        name: formData.name,
-        theme: formData.theme,
-        tone: formData.tone
+      const response = await axios.post(`${BASE_API_URL}/projects/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-      const eventId = res.data.id;
 
-      // 2. Add Participants
-      if (formData.participants.length > 0) {
-        await axios.post(`${API_URL}/${eventId}/participants`,
-          formData.participants.map(p => ({ name: p }))
-        );
-      }
+      const projectId = response.data.project_id;
+      // Redirect to dashboard or config page
+      // Using existing dashboard path for now
+      router.push(`/events/${projectId}/dashboard`);
 
-      // 3. Trigger Generation
-      await axios.post(`${API_URL}/${eventId}/generate`);
-
-      // Redirect to dashboard
-      router.push(`/events/${eventId}/dashboard`);
-    } catch (e) {
-      alert("Error creating event: " + e);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.response?.data?.detail || 'Error uploading file. Please try again.');
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-10 flex flex-col items-center">
-      <div className="w-full max-w-2xl bg-slate-800 p-8 rounded-2xl shadow-xl">
-        <div className="mb-8 flex justify-between items-center border-b border-slate-700 pb-4">
-          <h2 className="text-2xl font-bold">Step {step} of 2</h2>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+      <div className="max-w-md w-full bg-gray-800 rounded-xl shadow-2xl p-8 border border-gray-700">
+        <h1 className="text-3xl font-bold mb-2 text-center bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+          Cluedo Maker
+        </h1>
+        <p className="text-gray-400 text-center mb-8">
+          Upload your participants list (Excel) to start a new mystery.
+        </p>
+
+        {/* Upload Area */}
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-gray-300">
+            Select Excel File (.xlsx)
+          </label>
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            onChange={handleFileChange}
+            disabled={isLoading}
+            className="block w-full text-sm text-gray-400
+              file:mr-4 file:py-2.5 file:px-4
+              file:rounded-full file:border-0
+              file:text-sm file:font-semibold
+              file:bg-purple-600 file:text-white
+              hover:file:bg-purple-700
+              cursor-pointer bg-gray-700 rounded-lg border border-gray-600"
+          />
+          <p className="mt-2 text-xs text-gray-500">
+            Expected columns: Name, Email (optimal), Notes (optional)
+          </p>
         </div>
 
-        {step === 1 && (
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium mb-2">Event Name</label>
-              <input
-                className="w-full bg-slate-700 rounded p-3 text-white border border-slate-600 focus:border-purple-500 outline-none"
-                value={formData.name}
-                onChange={e => setFormData({ ...formData, name: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Theme</label>
-              <input
-                className="w-full bg-slate-700 rounded p-3 text-white border border-slate-600 focus:border-purple-500 outline-none"
-                value={formData.theme}
-                onChange={e => setFormData({ ...formData, theme: e.target.value })}
-                placeholder="e.g. 1920s Mafia, Cyberpunk, Harry Potter..."
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Tone</label>
-              <select
-                className="w-full bg-slate-700 rounded p-3 text-white border border-slate-600 focus:border-purple-500 outline-none"
-                value={formData.tone}
-                onChange={e => setFormData({ ...formData, tone: e.target.value })}
-              >
-                <option value="mystery">Serious Mystery</option>
-                <option value="humor">Absurd/Humorous</option>
-                <option value="horror">Dark Horror</option>
-              </select>
-            </div>
-            <button
-              onClick={() => setStep(2)}
-              className="w-full bg-purple-600 py-3 rounded-lg font-bold mt-4 hover:bg-purple-700"
-            >
-              Next: Participants
-            </button>
+        {error && (
+          <div className="mb-6 p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-sm">
+            {error}
           </div>
         )}
 
-        {step === 2 && (
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium mb-2">Add Participants</label>
-              <div className="flex gap-2">
-                <input
-                  className="flex-1 bg-slate-700 rounded p-3 text-white border border-slate-600"
-                  value={tempParticipant}
-                  onChange={e => setTempParticipant(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && (setFormData(p => ({ ...p, participants: [...p.participants, tempParticipant] })), setTempParticipant(''))}
-                  placeholder="Player Name"
-                />
-                <button
-                  onClick={() => {
-                    if (tempParticipant) {
-                      setFormData(p => ({ ...p, participants: [...p.participants, tempParticipant] }));
-                      setTempParticipant('');
-                    }
-                  }}
-                  className="bg-blue-600 px-4 rounded"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mt-4">
-              {formData.participants.map((p, i) => (
-                <span key={i} className="bg-slate-600 px-3 py-1 rounded-full text-sm flex items-center gap-2">
-                  {p}
-                  <button onClick={() => setFormData(d => ({ ...d, participants: d.participants.filter(x => x !== p) }))}>×</button>
-                </span>
-              ))}
-              {formData.participants.length === 0 && <span className="text-slate-500 text-sm">No participants yet.</span>}
-            </div>
-
-            <button
-              onClick={handleCreate}
-              disabled={isLoading || formData.participants.length < 2}
-              className="w-full bg-green-600 py-3 rounded-lg font-bold mt-8 hover:bg-green-700 disabled:opacity-50"
-            >
-              {isLoading ? "Generating Magic..." : "Create & Generate Game"}
-            </button>
-          </div>
-        )}
+        <button
+          onClick={handleUpload}
+          disabled={!file || isLoading}
+          className={`w-full py-3 px-4 rounded-lg font-bold text-lg transition-all duration-200
+            ${!file || isLoading
+              ? 'bg-gray-600 cursor-not-allowed text-gray-400'
+              : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg hover:shadow-purple-500/25'
+            }`}
+        >
+          {isLoading ? (
+            <span className="flex items-center justify-center">
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Parsing & Creating Project...
+            </span>
+          ) : (
+            'Upload & Create Project'
+          )}
+        </button>
       </div>
     </div>
-  )
+  );
 }

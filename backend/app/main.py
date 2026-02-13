@@ -32,8 +32,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from app.api.routers import events, projects
+
 # API Routers
 app.include_router(events.router, prefix="/api/events", tags=["events"])
+app.include_router(projects.router, prefix="/api/projects", tags=["projects"])
 
 # Mount static files (uploaded photos, generated pdfs/images)
 if not os.path.exists(settings.STATIC_DIR):

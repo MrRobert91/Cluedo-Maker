@@ -12,3 +12,5 @@ weasyprint
 jinja2
 httpx
 pytest
+pandas
+openpyxl
