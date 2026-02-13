@@ -1,6 +1,12 @@
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from app.db.session import create_db_and_tables
+from app.api.routers import events
+from app.core.config import settings
 from app.core.logging_config import setup_logging, get_logger
+import os
 import time
-from fastapi import Request
 
 setup_logging()
 logger = get_logger("app.main")
