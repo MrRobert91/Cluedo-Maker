@@ -8,7 +8,9 @@ export default function Dashboard() {
   const [event, setEvent] = useState(null);
   const [refreshInterval, setRefreshInterval] = useState(1000);
 
-  const API_URL = "http://localhost:8000/api/events";
+  // Ensure we point to the /api/events endpoint correctly
+  const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = rawApiUrl.endsWith("/events") ? rawApiUrl : `${rawApiUrl}/events`;
 
   useEffect(() => {
     if (!id) return;
@@ -40,8 +42,8 @@ export default function Dashboard() {
             <p className="text-slate-400">{event.theme} • {event.tone}</p>
           </div>
           <div className={`px-4 py-2 rounded-full capitalize font-bold ${event.status === 'ready' ? 'bg-green-500/20 text-green-400' :
-              event.status === 'generating' ? 'bg-yellow-500/20 text-yellow-400 animate-pulse' :
-                'bg-slate-700'
+            event.status === 'generating' ? 'bg-yellow-500/20 text-yellow-400 animate-pulse' :
+              'bg-slate-700'
             }`}>
             {event.status}
           </div>

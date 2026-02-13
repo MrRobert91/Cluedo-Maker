@@ -15,8 +15,9 @@ export default function CreateEvent() {
   const [tempParticipant, setTempParticipant] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Use absolute URL correctly
-  const API_URL = "http://localhost:8000/api/events";
+  // Use env variable or fallback to 127.0.0.1
+  const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = rawApiUrl.endsWith("/events") ? rawApiUrl : `${rawApiUrl}/events`;
 
   const handleCreate = async () => {
     setIsLoading(true);
