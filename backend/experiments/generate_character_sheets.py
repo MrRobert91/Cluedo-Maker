@@ -5,11 +5,12 @@ from reportlab.lib import colors
 from reportlab.lib.units import cm
 import os, re, zipfile, glob
 from datetime import datetime
+from PIL import Image
 
 # Generate timestamp
 timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-OUT_DIR = f"cluedo_fichas_{timestamp}"
-ZIP_PATH = f"Fichas_Bio_Personajes_{timestamp}.zip"
+OUT_DIR = os.path.join("experiments", "output", f"Fichas_Bio_Personajes_{timestamp}")
+BG_DIR = os.path.join("experiments", "backgrounds")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 styles = getSampleStyleSheet()
@@ -19,19 +20,50 @@ def sanitize_filename(name: str) -> str:
     s = re.sub(r"\s+", "_", s)
     return s
 
+def create_faded_bg(filename):
+    """Creates a very transparent version (20% opacity) of the image and returns its path."""
+    if not filename: return None
+    src_path = os.path.join(BG_DIR, filename)
+    if not os.path.exists(src_path):
+        return None
+    
+    dest_filename = f"faded_v2_{filename}"
+    dest_path = os.path.join(BG_DIR, dest_filename)
+    
+    # Check if already exists to avoid reprocessing
+    if os.path.exists(dest_path):
+        return dest_path
+
+    try:
+        img = Image.open(src_path).convert("RGBA")
+        # Adjust opacity
+        alpha = img.split()[3]
+        alpha = alpha.point(lambda p: p * 0.2)
+        img.putalpha(alpha)
+        img.save(dest_path, "PNG")
+        return dest_path
+    except Exception as e:
+        print(f"Error processing image {filename}: {e}")
+        return None
+
 FACTION_STYLES = {
-    "LÍNEA TEMPORAL ARCANA (Fantasía)": {"accent": colors.HexColor("#6D28D9"), "bg": colors.HexColor("#F5F3FF")},
-    "LÍNEA TEMPORAL MILLENNIAL (2000s)": {"accent": colors.HexColor("#DB2777"), "bg": colors.HexColor("#FFF1F2")},
-    "LÍNEA TEMPORAL OMEGA (Futuro)": {"accent": colors.HexColor("#0891B2"), "bg": colors.HexColor("#ECFEFF")},
-    "LÍNEA TEMPORAL CLÁSICA (1933)": {"accent": colors.HexColor("#B45309"), "bg": colors.HexColor("#FFFBEB")},
+    "LÍNEA TEMPORAL ARCANA (Fantasía)": {"accent": colors.HexColor("#6D28D9"), "bg": colors.HexColor("#F5F3FF"), "img": "arcana.png"},
+    "LÍNEA TEMPORAL MILLENNIAL (2000s)": {"accent": colors.HexColor("#DB2777"), "bg": colors.HexColor("#FFF1F2"), "img": "milenial.png"},
+    "LÍNEA TEMPORAL OMEGA (Futuro)": {"accent": colors.HexColor("#0891B2"), "bg": colors.HexColor("#ECFEFF"), "img": "omega.png"},
+    "LÍNEA TEMPORAL CLÁSICA (1933)": {"accent": colors.HexColor("#B45309"), "bg": colors.HexColor("#FFFBEB"), "img": "clasica.png"},
 }
 
-base = ParagraphStyle("Base", parent=styles["BodyText"], fontName="Helvetica", fontSize=10.8, leading=15.5, textColor=colors.HexColor("#111827"))
-name_style = ParagraphStyle("Name", parent=styles["Title"], fontName="Helvetica-Bold", fontSize=21, leading=25, spaceAfter=2, textColor=colors.HexColor("#111827"))
-tagline_style = ParagraphStyle("Tagline", parent=styles["BodyText"], fontName="Helvetica-Oblique", fontSize=12, leading=16, textColor=colors.HexColor("#374151"), spaceAfter=8)
-meta_style = ParagraphStyle("Meta", parent=styles["BodyText"], fontName="Helvetica-Bold", fontSize=10.5, leading=14, textColor=colors.white)
+# Pre-process images
+for k, v in FACTION_STYLES.items():
+    if "img" in v:
+        v["faded_img"] = create_faded_bg(v["img"])
+
+base = ParagraphStyle("Base", parent=styles["BodyText"], fontName="Helvetica-Bold", fontSize=10.8, leading=15.5, textColor=colors.HexColor("#111827"))
+name_style = ParagraphStyle("Name", parent=styles["Title"], fontName="Helvetica-Bold", fontSize=23, leading=27, spaceAfter=2, textColor=colors.HexColor("#111827"))
+tagline_style = ParagraphStyle("Tagline", parent=styles["BodyText"], fontName="Helvetica-BoldOblique", fontSize=12, leading=16, textColor=colors.HexColor("#374151"), spaceAfter=8)
+meta_style = ParagraphStyle("Meta", parent=styles["BodyText"], fontName="Helvetica-Bold", fontSize=12.5, leading=16, textColor=colors.white)
 bio_style = ParagraphStyle("Bio", parent=base, fontSize=11, leading=16, spaceAfter=10)
-h_style = ParagraphStyle("H", parent=styles["Heading3"], fontName="Helvetica-Bold", fontSize=12, leading=16, textColor=colors.HexColor("#111827"), spaceBefore=6, spaceAfter=4)
+h_style = ParagraphStyle("H", parent=styles["Heading3"], fontName="Helvetica-Bold", fontSize=14, leading=18, textColor=colors.HexColor("#111827"), spaceBefore=6, spaceAfter=4)
 bullet_style = ParagraphStyle("Bullet", parent=base, leftIndent=16, bulletIndent=8, spaceAfter=2)
 small_note = ParagraphStyle("Small", parent=base, fontSize=9.5, leading=13, textColor=colors.HexColor("#4B5563"))
 
@@ -126,9 +158,9 @@ chars = [
               "Tu magia es la rutina: años de concurso te entrenan para leer nervios, trampas y respuestas a medias. "
               "Conviertes el misterio en juego: preguntas, puntuaciones invisibles y pistas por acierto. "
               "Te divierte ver cómo la gente se delata intentando parecer natural. "
-              "Además, tienes una sensación incómoda: como si esta noche ya la hubieras presentado antes. "
+              "Además, tienes una sensación incómoda: como si esta noche ya la hubieras presenciado antes. "
               "Si repites una pregunta, es porque ya detectas la grieta en la historia de alguien."),
-         como_es="Calmo, perfecto e inquietante; guías con humor seco.",
+         como_es="Calmado, perfecto e inquietante; guías con humor seco.",
          disfraz="Traje de presentador, tarjeta/atril y sonrisa eterna."),
 
     dict(faccion="LÍNEA TEMPORAL MILLENNIAL (2000s)", titulo="Hannah Montana (Lola)", etiqueta="Nadie puede saber quién soy… y aun así, necesito aliados.",
@@ -173,7 +205,7 @@ chars = [
 
     # LÍNEA TEMPORAL OMEGA (Futuro)
     dict(faccion="LÍNEA TEMPORAL OMEGA (Futuro)", titulo="B3ND-3R (Guillermo Sevillano)", etiqueta="Camarero premium. ¿Tu secreto con hielo?",
-         bio=("Eres B3ND-3R: robot-camarero con ego a de estrella y ética de mercadillo. "
+         bio=("Eres B3ND-3R: robot-camarero con ego de estrella y ética de mercadillo. "
               "Sirves copas, sí, pero tu verdadero oficio es coleccionar secretos y venderlos en el momento justo. "
               "En una gala, lo ves todo: entradas, salidas, susurros, manos temblorosas. "
               "Y tú no olvidas: archivas. "
@@ -188,7 +220,7 @@ chars = [
               "Convences porque suenas a solución, aunque tu solución siempre tenga un coste que no nombras. "
               "En esta mansión, no ves un drama humano: ves una máquina rota que pide una reparación agresiva. "
               "Si te dejan acceder al núcleo, harás algo grande. "
-              "La pregunta es si showing será salvación… o una mejora irreversible."),
+              "La pregunta es si eso será salvación… o una mejora irreversible."),
          como_es="Visionario, impaciente y autoritario; confías en tu plan por encima de la gente.",
          disfraz="Traje futurista/robot, casco o gafas tech, leds; vibra magnate marciano."),
 
@@ -313,6 +345,7 @@ def build_pdf(char, path):
     ribbon = Table([[Paragraph(f"FACCIÓN: {faction}", meta_style)]], colWidths=[doc.width])
     ribbon.setStyle(TableStyle([
         ("BACKGROUND",(0,0),(-1,-1),accent),
+        ("BOX",(0,0),(-1,-1),1,colors.black),
         ("LEFTPADDING",(0,0),(-1,-1),12),
         ("RIGHTPADDING",(0,0),(-1,-1),12),
         ("TOPPADDING",(0,0),(-1,-1),8),
@@ -324,7 +357,7 @@ def build_pdf(char, path):
     name_card = Table([[Paragraph(char["titulo"], name_style)]], colWidths=[doc.width])
     name_card.setStyle(TableStyle([
         ("BACKGROUND",(0,0),(-1,-1),bg),
-        ("BOX",(0,0),(-1,-1),1,colors.HexColor("#E5E7EB")),
+        ("BOX",(0,0),(-1,-1),1,colors.black),
         ("LEFTPADDING",(0,0),(-1,-1),14),
         ("RIGHTPADDING",(0,0),(-1,-1),14),
         ("TOPPADDING",(0,0),(-1,-1),12),
@@ -347,13 +380,22 @@ def build_pdf(char, path):
         elems.append(Paragraph(f"<b>{k}:</b> {v}", bullet_style, bulletText="•"))
 
     elems.append(Spacer(1, 10))
-    elems.append(Paragraph("Nota: esta ficha es de ambientación. Los piques/conflictos se entregan aparte.", small_note))
+    elems.append(Paragraph("Nota: esta ficha es de ambientación. Recibireis más informacion de los objetivos mas adelante", small_note))
 
     def on_page(canvas, doc_):
         canvas.saveState()
+        
+        # Background Image (Faded)
+        bg_path = FACTION_STYLES[faction].get("faded_img")
+        if bg_path and os.path.exists(bg_path):
+            canvas.saveState()
+            # Draw image covering the whole page
+            canvas.drawImage(bg_path, 0, 0, width=A4[0], height=A4[1], preserveAspectRatio=False, anchor='c', mask='auto')
+            canvas.restoreState()
+
         canvas.setFont("Helvetica", 9)
         canvas.setFillColor(colors.HexColor("#6B7280"))
-        canvas.drawString(doc_.leftMargin, 1.05*cm, "Cluedo Viajeros del Tiempo · Ficha ampliada (2ª persona, presente)")
+        # Removed footer note
         canvas.drawRightString(doc_.pagesize[0]-doc_.rightMargin, 1.05*cm, f"Página {doc_.page}")
         canvas.restoreState()
 
@@ -361,13 +403,7 @@ def build_pdf(char, path):
 
 # Generate PDFs
 for c in chars:
-    fname = sanitize_filename(c["titulo"]) + "_ficha_bio_presente.pdf"
+    fname = sanitize_filename(c["titulo"]) + "_ficha.pdf"
     build_pdf(c, os.path.join(OUT_DIR, fname))
 
-pdfs = sorted(glob.glob(os.path.join(OUT_DIR, "*.pdf")))
-with zipfile.ZipFile(ZIP_PATH, "w", zipfile.ZIP_DEFLATED) as z:
-    for p in pdfs:
-        z.write(p, arcname=os.path.join("Fichas_Bio_Presente", os.path.basename(p)))
-
-print("OK:", len(pdfs), "PDFs")
-print("ZIP:", ZIP_PATH)
+print(f"OK: PDFs generados en: {OUT_DIR}")
