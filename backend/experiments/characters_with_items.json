@@ -8,10 +8,34 @@
             "disfraz": "Reina guerrera: pelo plateado, detalles de dragón, joyería/armadura y presencia imponente.",
             "objetos": [
                 {
-                    "nombre": "Llama de Mandato",
+                    "nombre": "Brote de Dragón",
+                    "tipo": "arma",
+                    "descripcion": "Un brazalete que emite una chispa abrasadora cuando lo aprietas.",
+                    "reglas": "Si lo activas, un jugador a elección queda silenciado durante la siguiente ronda (no puede hablar ni dar pistas)."
+                },
+                {
+                    "nombre": "Sello de la Rota Lealtad",
                     "tipo": "poder",
-                    "descripcion": "Un brazalete con escamas de dragón que arde en rojo tenue cuando dictas una orden que debe cumplirse.",
-                    "reglas": "Al activarlo, puedes ordenar a un jugador una acción simple (decir una pista corta o revelar una ubicación); si se niega, ese jugador pierde su siguiente acción."
+                    "descripcion": "Un anillo con escamas que obliga a juramentos solemnes.",
+                    "reglas": "Si lo usas, un jugador debe declarar sinceramente con quién estuvo en la última media hora (respuesta obligatoria)."
+                },
+                {
+                    "nombre": "Manto de Mandato",
+                    "tipo": "defensa",
+                    "descripcion": "Capa que impone respeto: disminuye la agresión hacia ti.",
+                    "reglas": "Mientras lo lleves puesto, no puedes ser acusada directamente; cualquier acusación se considera nula una vez por juego."
+                },
+                {
+                    "nombre": "Llama de Juicio",
+                    "tipo": "poder",
+                    "descripcion": "Pequeña vela de fuego azul que revela intenciones.",
+                    "reglas": "Enciéndela para obligar a dos jugadores a intercambiar una pista verdadera entre ellos (sin revelar a terceros)."
+                },
+                {
+                    "nombre": "Escama de Venganza",
+                    "tipo": "arma",
+                    "descripcion": "Fragmento de escama que deja una marca simbólica en quien la recibe.",
+                    "reglas": "Úsala sobre un jugador: la siguiente vez que intente mentir, los demás reciben una pista que contradice su coartada."
                 }
             ]
         },
@@ -23,10 +47,34 @@
             "disfraz": "Capa, corona sencilla, espada de atrezo; estética medieval noble.",
             "objetos": [
                 {
-                    "nombre": "Anillo del Pacto",
+                    "nombre": "Excalibur de Atadura",
+                    "tipo": "arma",
+                    "descripcion": "Espada simbólica que limita la libertad de quien la desafía.",
+                    "reglas": "Apuntas a un jugador: su acción siguiente (acusar, defender, usar un objeto) se reduce a una sola opción elegida por ti."
+                },
+                {
+                    "nombre": "Estatua del Juramento",
+                    "tipo": "poder",
+                    "descripcion": "Pequeña figura que sella promesas con gravedad ritual.",
+                    "reglas": "Si convences a dos jugadores de jurar ante la estatua, sus testimonios se cuentan como más válidos (cualquier contradicción gana una pista extra para ti)."
+                },
+                {
+                    "nombre": "Tabardo Protector",
                     "tipo": "defensa",
-                    "descripcion": "Un anillo simple que brilla al pedir juramentos: convierte palabras en promesas con coste.",
-                    "reglas": "Cuando lo usas para exigir un juramento, el jugador jurado no puede mentir en su siguiente intervención; si rompe el juramento, pierde su próxima acción y queda marcado."
+                    "descripcion": "Prenda con emblema real que protege la reputación.",
+                    "reglas": "Una vez por juego, anula una acusación pública contra ti o contra un aliado que hayas nombrado."
+                },
+                {
+                    "nombre": "Pergamino de Leyes",
+                    "tipo": "poder",
+                    "descripcion": "Documento antiguo que te permite imponer una regla temporal.",
+                    "reglas": "Al desplegarlo, puedes fijar una regla de sala por una ronda (ej.: nadie puede interrumpir, o todos contestan con sí/no)."
+                },
+                {
+                    "nombre": "Sello de Consejo",
+                    "tipo": "defensa",
+                    "descripcion": "Sello para convocar confidencias en entorno seguro.",
+                    "reglas": "Úsalo para forzar una conversación privada entre tres personas elegidas; lo dicho allí no puede ser repetido textualmente en público, salvo resumen."
                 }
             ]
         },
@@ -38,10 +86,34 @@
             "disfraz": "Abrigo blanco, cetro, maquillaje pálido, corona/tiara helada.",
             "objetos": [
                 {
-                    "nombre": "Cetro de Hielo",
+                    "nombre": "Cetro del Hielo",
+                    "tipo": "arma",
+                    "descripcion": "Cetro que enfría la voluntad ajena con un gesto noble.",
+                    "reglas": "Si lo apuntas a alguien, su siguiente intervención pierde emoción: habla en tono monótono y los demás obtienen una pista sobre su veracidad."
+                },
+                {
+                    "nombre": "Velo de Nieve",
                     "tipo": "defensa",
-                    "descripcion": "Un cetro pulcro que emite un frío cortante y establece barreras de protocolo a tu favor.",
-                    "reglas": "Apuntas a un jugador para protegerlo: durante una ronda no puede ser objeto de acusaciones directas ni efectos que lo obliguen a revelar pistas; si intenta aprovechar la protección para mentir deliberadamente, la protección se quiebra y queda expuesto."
+                    "descripcion": "Un chal que borra huellas emocionales alrededor tuyo.",
+                    "reglas": "Al usarlo, durante una ronda nadie puede acusarte con base en expresiones o microgestos; las acusaciones deben basarse en hechos."
+                },
+                {
+                    "nombre": "Reloj del Invierno",
+                    "tipo": "poder",
+                    "descripcion": "Pequeño reloj que detiene la prisa del grupo.",
+                    "reglas": "Gasta el reloj para pausar la discusión general: impones un minuto en el que solo se pueden hacer preguntas directas (sin especulación)."
+                },
+                {
+                    "nombre": "Hoja de Orden",
+                    "tipo": "poder",
+                    "descripcion": "Carta con una consigna fría y eficiente.",
+                    "reglas": "Escribes una instrucción que todos deben cumplir durante la siguiente ronda (ej.: 'hablen solo de movimientos' o 'no interrumpan'); quien la incumpla recibe una pista en contra."
+                },
+                {
+                    "nombre": "Cristal de Serenidad",
+                    "tipo": "defensa",
+                    "descripcion": "Fragmento helado que calma acusaciones impulsivas.",
+                    "reglas": "Actívalo para invalidar la primera acusación pública contra cualquier jugador en las próximas dos rondas."
                 }
             ]
         },
@@ -53,10 +125,34 @@
             "disfraz": "Rojo/negro, corona de corazones, cartas/abanico, maquillaje marcado.",
             "objetos": [
                 {
-                    "nombre": "Timbre de Sentencia",
+                    "nombre": "Sello de Sentencia",
                     "tipo": "arma",
-                    "descripcion": "Un pequeño timbre con forma de corazón que, al sonar, convierte tu capricho en orden social.",
-                    "reglas": "Al tocarlo, eliges a un jugador que debe decir una verdad corta (una pista) inmediatamente; si opta por no hacerlo, queda silenciado y pierde su próxima acción."
+                    "descripcion": "Un timbre que transforma una acusación en espectáculo penal.",
+                    "reglas": "Toca el sello para forzar un voto inmediato: todos deben votar culpable/innocente sin discusión; el resultado crea una pista según la mayoría."
+                },
+                {
+                    "nombre": "Abanico del Escarnio",
+                    "tipo": "poder",
+                    "descripcion": "Abanico que humilla con estilo: expone una contradicción en público.",
+                    "reglas": "Usándolo, eliges a un jugador: se le pide que repita su última declaración palabra por palabra; cualquier discrepancia se convierte en pista."
+                },
+                {
+                    "nombre": "Capa de Coronación",
+                    "tipo": "defensa",
+                    "descripcion": "Capa teatral que altera la percepción del liderazgo.",
+                    "reglas": "Mientras la tengas puesta, una de tus afirmaciones por ronda gana peso: cuenta como dos voces a la hora de convencer al grupo."
+                },
+                {
+                    "nombre": "Carta Roja",
+                    "tipo": "arma",
+                    "descripcion": "Carta que obliga a la vergüenza pública selectiva.",
+                    "reglas": "Asignas la carta a un jugador: debe contar una verdad embarazosa o aceptar una pista que lo incrimine (a elección del jugador, con consecuencias)."
+                },
+                {
+                    "nombre": "Campana del Juicio",
+                    "tipo": "poder",
+                    "descripcion": "Una campana pequeña que marca el inicio de un veredicto teatral.",
+                    "reglas": "Al tocarla, convocas una mini-audiencia de tres personas donde solo se puede presentar una prueba nueva; la audiencia decide si se acepta la prueba."
                 }
             ]
         },
@@ -70,8 +166,32 @@
                 {
                     "nombre": "Lupa de Grietas",
                     "tipo": "poder",
-                    "descripcion": "Una lupa que amplifica contradicciones y hace visibles las pequeñas fisuras de las historias.",
-                    "reglas": "Al usarla puedes pedir a un jugador que repita su última afirmación palabra por palabra; si cambia algo, debe entregar una pista verdadera a quien la pidió."
+                    "descripcion": "Una lupa que hace visibles pequeñas contradicciones.",
+                    "reglas": "Úsala para señalar una frase reciente de un jugador; si la frase tiene contradicción con otra previa, obtienes una pista directa."
+                },
+                {
+                    "nombre": "Reloj Desorientado",
+                    "tipo": "defensa",
+                    "descripcion": "Reloj que crea confusión temporal alrededor tuyo.",
+                    "reglas": "Al activarlo, cualquier pista recogida sobre ti en la próxima ronda pierde validez (se considera dudosa)."
+                },
+                {
+                    "nombre": "Naipes Preguntones",
+                    "tipo": "poder",
+                    "descripcion": "Un mazo de cartas que fuerza respuestas concretas.",
+                    "reglas": "Entregas una carta a un jugador: debe responder una pregunta cerrada (sí/no) que tú formules; mentir concede al interrogador una pista."
+                },
+                {
+                    "nombre": "Té de Revelación",
+                    "tipo": "arma",
+                    "descripcion": "Taza con sabor a verdad: obliga a la espontaneidad.",
+                    "reglas": "Ofreces la taza simbólicamente a alguien; esa persona debe decir la última cosa que pensó en voz alta (puede omitir nombres)."
+                },
+                {
+                    "nombre": "Puerta Móvil",
+                    "tipo": "poder",
+                    "descripcion": "Clave para abrir una salida temporal a datos ocultos.",
+                    "reglas": "Puedes pedir que se revise un lugar concreto (bolso, abrigo, nota): el moderador revela si contiene algo relevante (sí/no) y da una pista si es afirmativo."
                 }
             ]
         },
@@ -83,10 +203,34 @@
             "disfraz": "Barba/peluca, capa/túnica, bastón; estética de mago clásico.",
             "objetos": [
                 {
-                    "nombre": "Reloj de Presagio",
+                    "nombre": "Bastón de Ecos",
                     "tipo": "poder",
-                    "descripcion": "Un reloj antiguo que palpita cuando una decisión va a torcer el destino; te permite ver una jugada adelantada.",
-                    "reglas": "Una vez por ronda puedes forzar a un jugador a mostrar su intención inmediata (qué hará en su siguiente acción); puedes usar esa información inmediatamente."
+                    "descripcion": "Bastón que repite frases con significado alterado.",
+                    "reglas": "Usándolo, fuerzas a dos jugadores a repetir la última frase que dijeron; cualquier alteración entre ambas repeticiones revela una pista."
+                },
+                {
+                    "nombre": "Pergamino de Presagio",
+                    "tipo": "poder",
+                    "descripcion": "Rollo con una frase críptica que condiciona una elección.",
+                    "reglas": "Lees el presagio y nombras una acción (ej.: 'alguien mentirá'); si ocurre, obtienes una pista adicional."
+                },
+                {
+                    "nombre": "Anillo de Señal",
+                    "tipo": "defensa",
+                    "descripcion": "Anillo que desvía la atención mística hacia otro.",
+                    "reglas": "Si te acusan, puedes pasar simbólicamente el anillo a otro jugador; la acusación se traslada a ese jugador una vez por juego."
+                },
+                {
+                    "nombre": "Polvo de Adivinar",
+                    "tipo": "arma",
+                    "descripcion": "Pequeño frasco que provoca confesiones involuntarias.",
+                    "reglas": "Dispérsalo en una conversación: el jugador objetivo debe decir un detalle verdadero sobre su última acción (no más de una frase)."
+                },
+                {
+                    "nombre": "Cartas del Destino",
+                    "tipo": "poder",
+                    "descripcion": "Tres cartas que modifican el flujo de información.",
+                    "reglas": "Juntas, permiten reordenar el turno de interrogatorio una vez (elige el nuevo orden de tres jugadores)."
                 }
             ]
         }
@@ -100,10 +244,34 @@
             "disfraz": "Look icónico: brillo, peluca, gafas raras, hombreras; actitud superstar.",
             "objetos": [
                 {
-                    "nombre": "Micrófono Spotlight",
+                    "nombre": "Micrófono de Spotlight",
                     "tipo": "poder",
-                    "descripcion": "Un micrófono que convierte cualquier confesión en espectáculo y obliga a miradas sinceras.",
-                    "reglas": "Al usarlo eliges a un jugador que debe decir una verdad pública (una pista) como si fuera parte del show; si rehúsa, queda expuesto y pierde su próxima acción."
+                    "descripcion": "Micro que convierte declaraciones en espectáculo revelador.",
+                    "reglas": "Con el micrófono puedes pedir a un jugador que haga una 'mini-performance' donde debe incluir una verdad breve; si rehúsa, pierde credibilidad (se le da una pista en contra)."
+                },
+                {
+                    "nombre": "Vestido Escena",
+                    "tipo": "defensa",
+                    "descripcion": "Atuendo que controla cómo te perciben los demás.",
+                    "reglas": "Ponte el vestido para que una acusación hacia ti se vea como dramatización: la acusación pierde fuerza una vez."
+                },
+                {
+                    "nombre": "Vinilo del Escándalo",
+                    "tipo": "arma",
+                    "descripcion": "Disco simbólico que reproduce una evidencia vergonzosa.",
+                    "reglas": "Reproduces el vinilo para obligar a un jugador a revelar una contradicción pasada; si existe, se convierte en pista."
+                },
+                {
+                    "nombre": "Gafas de Foco",
+                    "tipo": "poder",
+                    "descripcion": "Gafas que centran la atención en un objetivo.",
+                    "reglas": "Usándolas eliges a un jugador: durante la ronda, cualquier acusación sobre él se discute inmediatamente sin interrupciones."
+                },
+                {
+                    "nombre": "Coreografía de Verdad",
+                    "tipo": "arma",
+                    "descripcion": "Rutina que, cuando se ejecuta, hace tambalear falsas máscaras.",
+                    "reglas": "Convoca a tres personas a seguir la coreografía simbólica; la que muestre mayor reticencia debe responder a una pregunta directa de tu elección."
                 }
             ]
         },
@@ -115,10 +283,34 @@
             "disfraz": "Peluca, guitarra de juguete, outfit eurovisivo y energía meme.",
             "objetos": [
                 {
-                    "nombre": "Guitarra del Chiste",
+                    "nombre": "Guitarra de Broma",
+                    "tipo": "arma",
+                    "descripcion": "Guitarra que distrae lo suficiente para escuchar confesiones.",
+                    "reglas": "Tocas una canción corta: los dos jugadores más cercanos deben intercambiar una frase sincera que tú luego puedes repetir (sin añadir nombres)."
+                },
+                {
+                    "nombre": "Pegatina Viral",
+                    "tipo": "poder",
+                    "descripcion": "Pegatina que convierte un rumor en tema central.",
+                    "reglas": "Colócala en una historia que hayas escuchado: el moderador da una pista adicional relacionada con ese rumor si es relevante."
+                },
+                {
+                    "nombre": "Peluca de Camuflaje",
                     "tipo": "defensa",
-                    "descripcion": "Una guitarra estrafalaria que convierte una posible incriminación en broma momentánea y te da margen para reaccionar.",
-                    "reglas": "Tócala para anular una acusación dirigida a ti esa ronda; a cambio debes revelar un rumor menor que hayas oído (una pista secundaria)."
+                    "descripcion": "Peluca que hace que te subestimen y no te acusen.",
+                    "reglas": "Mientras la lleves puesta, no puedes ser seleccionado para una votación de culpabilidad durante una ronda."
+                },
+                {
+                    "nombre": "Letra Olvidada",
+                    "tipo": "poder",
+                    "descripcion": "Hoja con una frase que incita a la sinceridad espontánea.",
+                    "reglas": "Pides a un jugador que complete la frase; si su respuesta no concuerda con sus declaraciones anteriores, obtienes una pista."
+                },
+                {
+                    "nombre": "Coreografía Meme",
+                    "tipo": "arma",
+                    "descripcion": "Ritual tonto que rompe la compostura y saca verdades.",
+                    "reglas": "Convocas a tres jugadores a imitar el meme; el que lo haga peor debe responder a una pregunta directa de tu elección."
                 }
             ]
         },
@@ -130,10 +322,34 @@
             "disfraz": "Traje de presentador, tarjeta/atril y sonrisa eterna.",
             "objetos": [
                 {
-                    "nombre": "Cuestionario Eterno",
+                    "nombre": "Cronómetro Imperturbable",
+                    "tipo": "defensa",
+                    "descripcion": "Reloj que regula los tiempos de palabra con justicia implacable.",
+                    "reglas": "Lo activas para imponer límites de tiempo a intervenciones; quien exceda pierde su turno y recibe una pista en contra."
+                },
+                {
+                    "nombre": "Tarjeta de Cuestionario",
                     "tipo": "poder",
-                    "descripcion": "Una libreta de preguntas implacables que convierte un interrogatorio en juego con reglas claras.",
-                    "reglas": "Puedes realizar una ronda de tres preguntas rápidas a un jugador; si detectas contradicción en sus respuestas, ese jugador pierde su siguiente acción y debe revelar una pista."
+                    "descripcion": "Tarjeta con preguntas diseñadas para pillar contradicciones.",
+                    "reglas": "Haces una pregunta y el jugador debe responder en menos de 10 segundos; respuestas dudosas generan una pista para ti."
+                },
+                {
+                    "nombre": "Sonrisa Eterna",
+                    "tipo": "defensa",
+                    "descripcion": "Actitud que desarma ataques personales.",
+                    "reglas": "Usándola, cancelas una provocación hacia ti o hacia un aliado una vez por juego; la provocación no cuenta como pista."
+                },
+                {
+                    "nombre": "Pizarra de Puntos",
+                    "tipo": "poder",
+                    "descripcion": "Pizarra invisible para contabilizar verdades y mentiras.",
+                    "reglas": "Anotas mentalmente un conteo: si dos jugadores mienten en una ronda, revelas una pista sobre movimientos simultáneos."
+                },
+                {
+                    "nombre": "Micrófono de Repetición",
+                    "tipo": "arma",
+                    "descripcion": "Micro que hace repetir una declaración antigua y la compara con la actual.",
+                    "reglas": "Pides repetir una declaración previa de alguien; cualquier diferencia se transforma en pista."
                 }
             ]
         },
@@ -145,10 +361,34 @@
             "disfraz": "Peluca rubia, outfit pop; ideal doble look (Hannah/normal).",
             "objetos": [
                 {
-                    "nombre": "Máscara Dual",
+                    "nombre": "Peluca Doble",
                     "tipo": "defensa",
-                    "descripcion": "Una máscara brillante que oculta identidades y permite negociar silencios a cambio de favores.",
-                    "reglas": "Actívala para evitar interrogatorio directo durante una ronda; a cambio debes entregar una pista propia a un aliado que elijas."
+                    "descripcion": "Cambio rápido que protege tu identidad por un rato.",
+                    "reglas": "Úsala para ocultar tu secreto una ronda: nadie puede preguntar directamente por tu doble identidad durante ese tiempo."
+                },
+                {
+                    "nombre": "Diario de Fan",
+                    "tipo": "poder",
+                    "descripcion": "Cuaderno con promesas de aliados y favores guardados.",
+                    "reglas": "Puedes ofrecer una entrada del diario a cambio de protección: el receptor debe abstenerse de acusarte durante una ronda."
+                },
+                {
+                    "nombre": "Solo Revelador",
+                    "tipo": "arma",
+                    "descripcion": "Actuación breve que provoca reacciones sinceras.",
+                    "reglas": "Realizas un solo: el jugador más emocionado por tu actuación debe decir una verdad sobre su relación contigo."
+                },
+                {
+                    "nombre": "Gema de Confianza",
+                    "tipo": "poder",
+                    "descripcion": "Pequeña joya que compra lealtad temporal.",
+                    "reglas": "Se la das a un aliado para que no te traicione durante dos rondas; si lo hace, pierde una pista importante."
+                },
+                {
+                    "nombre": "Lente de Paparazzi",
+                    "tipo": "arma",
+                    "descripcion": "Lente simbólica que captura una imagen comprometida (metafórica).",
+                    "reglas": "La usas para pedir ver una prenda o detalle de otro jugador; si encuentras incoherencia con su historia, obtienes una pista."
                 }
             ]
         },
@@ -160,10 +400,34 @@
             "disfraz": "Vecina icónica, gestualidad, actitud venenosa y frases lapidarias.",
             "objetos": [
                 {
-                    "nombre": "Lengua de Portal",
+                    "nombre": "Lupa de Portal de Vecinos",
+                    "tipo": "poder",
+                    "descripcion": "Instrumento que amplifica rumores en verdades útiles.",
+                    "reglas": "Transformas un rumor escuchado en una pista verificable si al menos dos personas lo corroboran (les pides confirmación)."
+                },
+                {
+                    "nombre": "Taza del Cotilleo",
                     "tipo": "arma",
-                    "descripcion": "Un abanico de palabras punzantes que corta la calma y obliga a los demás a responder.",
-                    "reglas": "Al usarla puedes forzar a un jugador a responder a una pregunta directa que tú formulas; si miente, queda desacreditado y pierde su próxima acción."
+                    "descripcion": "Taza que provoca que quien la sostenga confiese un dato jugoso.",
+                    "reglas": "Ofreces la taza a alguien: esa persona debe decir un detalle sobre otro jugador o perderá credibilidad (gana una pista para ti)."
+                },
+                {
+                    "nombre": "Mapa de Relaciones",
+                    "tipo": "poder",
+                    "descripcion": "Mapa mental donde anotas alianzas y rencillas.",
+                    "reglas": "Si relacionas correctamente a dos jugadores con un suceso, obtienes una pista adicional sobre sus movimientos."
+                },
+                {
+                    "nombre": "Botas de Escalera",
+                    "tipo": "defensa",
+                    "descripcion": "Calzado que te permite moverte y escapar de confrontaciones incómodas.",
+                    "reglas": "Usándolas, puedes rehusar una acusación directa y trasladarla a una discusión privada con el acusador."
+                },
+                {
+                    "nombre": "Bocina Vecinal",
+                    "tipo": "arma",
+                    "descripcion": "Dispositivo para amplificar una queja hasta que se convierta en tema.",
+                    "reglas": "La tocas para forzar una réplica pública de un testimonio; si el testigo titubea, obtienes una pista."
                 }
             ]
         },
@@ -175,10 +439,34 @@
             "disfraz": "Top/shorts o leggings, botas, mochila, trenza; pistolas de juguete.",
             "objetos": [
                 {
-                    "nombre": "Mapa de Pasadizos",
+                    "nombre": "Piolet de Exploración",
+                    "tipo": "arma",
+                    "descripcion": "Herramienta para abrir caminos y descubrir escondites.",
+                    "reglas": "Lo usas para solicitar la inspección de una zona (bolsillo, armario, cajón); si contiene algo relevante, revelas una pista."
+                },
+                {
+                    "nombre": "Mochila de Suministros",
+                    "tipo": "defensa",
+                    "descripcion": "Mochila con todo lo necesario para sobrevivir a acusaciones.",
+                    "reglas": "Una vez por juego, puedes usarla para anular una trampa: cancelas una acción de otro jugador dirigida a ti."
+                },
+                {
+                    "nombre": "Mapa Raspado",
                     "tipo": "poder",
-                    "descripcion": "Un mapa gastado que revela rutas secretas y movimientos recientes dentro de la mansión.",
-                    "reglas": "Usándolo conoces la ubicación real de un jugador en la ronda anterior y obtienes esa información como pista verificable."
+                    "descripcion": "Mapa con rutas secretas y marcas de paso.",
+                    "reglas": "Reconstituye el recorrido de un jugador durante la última hora; si tu reconstrucción es correcta según el moderador, obtienes una pista."
+                },
+                {
+                    "nombre": "Linterna de Huellas",
+                    "tipo": "poder",
+                    "descripcion": "Foco que revela rastros recientes en objetos cercanos.",
+                    "reglas": "Al iluminar un objeto, el moderador indica si alguien lo tocó recientemente (sí/no) y da una pista si es afirmativo."
+                },
+                {
+                    "nombre": "Gancho Silencioso",
+                    "tipo": "arma",
+                    "descripcion": "Gancho que interrumpe discretamente a un jugador en el momento clave.",
+                    "reglas": "Úsalo para cortar la intervención de un jugador y forzarle a responder una pregunta simple en su lugar."
                 }
             ]
         },
@@ -190,10 +478,34 @@
             "disfraz": "Uniforme Hogwarts, varita, libro y actitud de ‘estudia esto’.",
             "objetos": [
                 {
-                    "nombre": "Cuaderno de Veritas",
+                    "nombre": "Cuaderno de Cronologías",
                     "tipo": "poder",
-                    "descripcion": "Un cuaderno encantado que recoge contradicciones y exige pruebas ordenadas.",
-                    "reglas": "Al consultarlo puedes requerir a un jugador que presente una pieza de evidencia concreta; si no la tiene, queda desacreditado y pierde su siguiente acción."
+                    "descripcion": "Libreta donde reconstruyes minuciosamente eventos y horarias.",
+                    "reglas": "Si completas una cronología coherente para un hecho, convences al moderador y obtienes una pista clave."
+                },
+                {
+                    "nombre": "Pluma Verificadora",
+                    "tipo": "arma",
+                    "descripcion": "Pluma que convierte declaraciones en testables.",
+                    "reglas": "Obligas a un jugador a dar detalles concretos sobre una acción; si falla al dar detalles verosímiles, recibes una pista."
+                },
+                {
+                    "nombre": "Bufanda de Concentración",
+                    "tipo": "defensa",
+                    "descripcion": "Accesorio que te protege de distracciones y ataques personales.",
+                    "reglas": "Actívala para ignorar una provocación y mantener intacta tu investigación (una vez por dos rondas)."
+                },
+                {
+                    "nombre": "Hechizo de Archivado",
+                    "tipo": "poder",
+                    "descripcion": "Encantamiento para ordenar pruebas y mensajes.",
+                    "reglas": "Usándolo, puedes pedir que se revele la última nota encontrada en la mansión (si existe), otorgándote una pista."
+                },
+                {
+                    "nombre": "Sello de Credibilidad",
+                    "tipo": "defensa",
+                    "descripcion": "Sello que respalda una de tus teorías ante el grupo.",
+                    "reglas": "Marcas una teoría tuya; si en la siguiente ronda otra persona presenta evidencia que la contradiga, la persona que contradiga pierde una pista."
                 }
             ]
         }
@@ -207,25 +519,73 @@
             "disfraz": "Robot bartender metalizado con leds/antenas y delantal futurista.",
             "objetos": [
                 {
-                    "nombre": "Registro de Susurros",
+                    "nombre": "Pantalla de Órbita",
+                    "tipo": "poder",
+                    "descripcion": "Pantalla portátil que muestra fragmentos de conversaciones pasadas.",
+                    "reglas": "Muestras un fragmento grabado de una conversación reciente; si revela contradicción, obtienes una pista por exposición."
+                },
+                {
+                    "nombre": "Cuchara Archivista",
                     "tipo": "arma",
-                    "descripcion": "Un módulo de memoria que almacena conversaciones y liberará la verdad cuando te convenga.",
-                    "reglas": "Al activarlo puedes revelar una pista privada registrada por otro jugador (si existe); ese jugador debe a cambio entregar una pista pública o perder su siguiente acción."
+                    "descripcion": "Cuchara con grabadora oculta para recoger confesiones discretas.",
+                    "reglas": "Simulas servir: el jugador que acepta una 'degustación' debe decir algo personal; si miente, ganas una pista."
+                },
+                {
+                    "nombre": "Delantal Neutral",
+                    "tipo": "defensa",
+                    "descripcion": "Delantal que protege tu inventario de ser requisado.",
+                    "reglas": "Mientras lo lleves puesto, tus objetos no pueden ser inspeccionados por otros jugadores sin tu permiso."
+                },
+                {
+                    "nombre": "Cóctel de Chisme",
+                    "tipo": "poder",
+                    "descripcion": "Mezcla simbólica que desata confidencias en cadena.",
+                    "reglas": "Sirves el cóctel a tres jugadores: cada uno debe revelar una cosa que otro haya hecho en la última hora (sin nombres directos)."
+                },
+                {
+                    "nombre": "Factura de Negocio",
+                    "tipo": "arma",
+                    "descripcion": "Documento ficticio que extorsiona con información comprometedora.",
+                    "reglas": "La entregas a un jugador: debe entregar una pista a cambio de que no la publiques; si miente, la pista se libera al grupo."
                 }
             ]
         },
         {
             "titulo": "E.L.O.N. Mk-500 (Rodrigo)",
             "etiqueta": "Esto se arregla. Con recursos. Y sin permisos.",
-            "bio": "Eres E.L.O.N. Mk-500: el mito del visionario llevado al extremo, reprogramado como robot inmortal. Hablas de colonias, recursos y planes inevitables, como si la realidad fuera un sistema que optimizar. Convences porque suenas a solución, aunque tu solución siempre tenga un coste que no nombras. En esta mansión, no ves un drama humano: ves una máquina rota que pide una reparación agresiva. Si te dejan acceder al núcleo, harás algo grande. La pregunta es si eso será salvación… o una mejora irreversible.",
+            "bio": "Eres E.L.O.N. Mk-500: el mito del visionario llevado al extremo, reprogramado como robot inmortal. Hablas de colonias, recursos y planes inevitable, como si la realidad fuera un sistema que optimizar. Convences porque suenas a solución, aunque tu solución siempre tenga un coste que no nombras. En esta mansión, no ves un drama humano: ves una máquina rota que pide una reparación agresiva. Si te dejan acceder al núcleo, harás algo grande. La pregunta es si eso será salvación… o una mejora irreversible.",
             "como_es": "Visionario, impaciente y autoritario; confías en tu plan por encima de la gente.",
             "disfraz": "Traje futurista/robot, casco o gafas tech, leds; vibra magnate marciano.",
             "objetos": [
                 {
-                    "nombre": "Planificador de Recursos",
+                    "nombre": "Terminal de Optimización",
                     "tipo": "poder",
-                    "descripcion": "Un interfaz que reordena prioridades y redistribuye acciones para optimizar resultados.",
-                    "reglas": "Usándolo puedes redirigir la acción de un jugador hacia otro objetivo diferente esa ronda; solo puede usarse una vez por tres rondas."
+                    "descripcion": "Dispositivo que propone soluciones radicales al problema.",
+                    "reglas": "Ofreces una 'solución': si el grupo la acepta por mayoría, obtienes una pista clave; si la rechazan, obtienes una pista en contra."
+                },
+                {
+                    "nombre": "Chip de Coerción",
+                    "tipo": "arma",
+                    "descripcion": "Fragmento tecnológico que presiona decisiones.",
+                    "reglas": "Lo aplicas simbólicamente a una elección: un jugador debe elegir entre dos opciones que propones; la elección errónea le penaliza con una pista."
+                },
+                {
+                    "nombre": "Escudo de Capital",
+                    "tipo": "defensa",
+                    "descripcion": "Protección basada en recursos y contactos.",
+                    "reglas": "Usándolo, puedes comprar la neutralidad de un jugador por una ronda (no puede ser acusado ni usar objetos)."
+                },
+                {
+                    "nombre": "Protocolo de Reinicio",
+                    "tipo": "poder",
+                    "descripcion": "Comando para reiniciar una discusión desde cero.",
+                    "reglas": "Actívalo para borrar la última ronda de decisiones: las declaraciones se consideran inválidas y no cuentan como pistas."
+                },
+                {
+                    "nombre": "Contrato de Mejora",
+                    "tipo": "arma",
+                    "descripcion": "Acuerdo que obliga a un jugador a cumplir tu plan a cambio de protección.",
+                    "reglas": "Ofreces el contrato: si alguien lo firma (declara lealtad), no puede acusarte; si rompe la firma, recibe una penalización de pista."
                 }
             ]
         },
@@ -237,10 +597,34 @@
             "disfraz": "Bata, pelo loco, cacharro en mano; look sci-fi de laboratorio.",
             "objetos": [
                 {
-                    "nombre": "Kit de Fractura",
+                    "nombre": "Artilugio de Choque",
                     "tipo": "arma",
-                    "descripcion": "Un maletín de aparatejos improvisados que fuerza pruebas al límite entre brillantez y desastre.",
-                    "reglas": "Puedes activar un experimento arriesgado para forzar la revelación de una pista aleatoria; si el experimento falla, pierdes tu próxima acción; si tiene éxito, recibes dos pistas."
+                    "descripcion": "Cacharro experimental que desordena testimonios.",
+                    "reglas": "Actívalo para forzar a dos jugadores a intercambiar recuerdos de la última hora; si las versiones no coinciden, obtienes una pista."
+                },
+                {
+                    "nombre": "Bata Protectora",
+                    "tipo": "defensa",
+                    "descripcion": "Bata con aislante que te permite probar sin consecuencias inmediatas.",
+                    "reglas": "Ponte la bata para anular el efecto de un arma dirigida hacia ti una vez."
+                },
+                {
+                    "nombre": "Dispositivo de Prueba",
+                    "tipo": "poder",
+                    "descripcion": "Aparato que analiza una afirmación y da un resultado aproximado.",
+                    "reglas": "Lo aplicas a una declaración: el moderador da una respuesta del tipo 'probable/improbable' que puede generar pista."
+                },
+                {
+                    "nombre": "Informe Caótico",
+                    "tipo": "arma",
+                    "descripcion": "Documento lleno de teorías que confunden a quien lo recibe.",
+                    "reglas": "Se lo entregas a un jugador: debe defender la teoría ante el grupo o perder credibilidad (gana una pista para ti)."
+                },
+                {
+                    "nombre": "Mecanismo de Retroceso",
+                    "tipo": "poder",
+                    "descripcion": "Pequeño aparato para deshacer un efecto reciente.",
+                    "reglas": "Puedes cancelar la última acción de otro jugador, excepto si esa acción fue defensiva."
                 }
             ]
         },
@@ -254,8 +638,32 @@
                 {
                     "nombre": "Visor de Patrones",
                     "tipo": "poder",
-                    "descripcion": "Un visor que analiza microexpresiones y convierte repeticiones en pruebas casi indiscutibles.",
-                    "reglas": "Al escanear a un jugador debes declarar si crees que miente; si aciertas, la declaración del jugador queda marcada como confirmada y gana efecto de prueba; si fallas, pierdes tu siguiente acción."
+                    "descripcion": "Visor que detecta repeticiones en el discurso de un jugador.",
+                    "reglas": "Apuntas el visor a alguien: si repite una contradicción, recibes una pista inmediata."
+                },
+                {
+                    "nombre": "Cinturón de Calma",
+                    "tipo": "defensa",
+                    "descripcion": "Cinturón que regula el estrés y evita provocaciones.",
+                    "reglas": "Actívalo para impedir que un arma te obligue a confesar o a mostrar una pista durante una ronda."
+                },
+                {
+                    "nombre": "Sable de Duda",
+                    "tipo": "arma",
+                    "descripcion": "Sable simbólico que cuestiona la coherencia ajena.",
+                    "reglas": "Lo usas para desafiar una declaración: el jugador debe explicar su lógica; fallo en la explicación genera una pista."
+                },
+                {
+                    "nombre": "Registro Neural",
+                    "tipo": "poder",
+                    "descripcion": "Dispositivo que resume patrones de conducta recientes.",
+                    "reglas": "Solicitas un informe sobre un jugador: el moderador te da una pista basada en consistencia/inconsistencia."
+                },
+                {
+                    "nombre": "Meditación Silenciosa",
+                    "tipo": "defensa",
+                    "descripcion": "Técnica que te permite recuperar control y bloquear rumores.",
+                    "reglas": "La usas y durante una ronda las acusaciones públicas hacia ti no pueden acumularse; solo la primera se considera."
                 }
             ]
         },
@@ -267,10 +675,34 @@
             "disfraz": "Blanco neón, halo/leds, maquillaje brillante; estética virgen-futurista.",
             "objetos": [
                 {
-                    "nombre": "Halo de Glitch",
+                    "nombre": "Halo Corrector",
+                    "tipo": "defensa",
+                    "descripcion": "Aro luminoso que oculta fallos menores de comportamiento.",
+                    "reglas": "Actívalo para ignorar un glitch o contradicción menor que te involucre (una vez)."
+                },
+                {
+                    "nombre": "Pantalla de Ensayo",
+                    "tipo": "poder",
+                    "descripcion": "Pantalla que reproduce momentos anteriores de tu actuación.",
+                    "reglas": "Proyectas una repetición: si alguien afirma algo distinto a lo proyectado, obtienes una pista sobre su credibilidad."
+                },
+                {
+                    "nombre": "Flash de Glitch",
                     "tipo": "arma",
-                    "descripcion": "Un aro de luz que, al parpadear deliberadamente, provoca fallos en la narrativa de un objetivo.",
-                    "reglas": "Al forzar un glitch eliges a un jugador que debe repetir su última afirmación; si cambia algo, pierde su siguiente acción y revela una pista por el fallo."
+                    "descripcion": "Pequeño fallo programado que expone recuerdos ajenos.",
+                    "reglas": "Provocas un glitch intencionado: un jugador cercano debe narrar su último pensamiento en una palabra; si miente, obtienes una pista."
+                },
+                {
+                    "nombre": "Coro de Seguidores",
+                    "tipo": "poder",
+                    "descripcion": "Influencia pública que puede proteger o señalar.",
+                    "reglas": "Movilizas a seguidores simbólicos: una acusación contra ti pierde efecto si no consigue apoyos (se necesita mayoría para prosperar)."
+                },
+                {
+                    "nombre": "Registro Limpio",
+                    "tipo": "defensa",
+                    "descripcion": "Capacidad para borrar una pista asociada a ti.",
+                    "reglas": "Usándolo, puedes eliminar una pista que te implique, pero el moderador dará una pista alterna al grupo."
                 }
             ]
         },
@@ -284,8 +716,32 @@
                 {
                     "nombre": "Registro Predictivo",
                     "tipo": "poder",
-                    "descripcion": "Un terminal que genera predicciones basadas en patrones de conducta y conversación.",
-                    "reglas": "Puedes predecir la respuesta de un jugador antes de que hable; si la predicción coincide con lo dicho, obligas a ese jugador a revelar una pista adicional; si falla, pierdes tu siguiente acción."
+                    "descripcion": "Base de datos que sugiere la próxima contradicción probable.",
+                    "reglas": "Consultas el registro: el moderador te da una predicción sobre quién puede contradecirse; si aciertas, obtienes pista."
+                },
+                {
+                    "nombre": "Interface Disuasoria",
+                    "tipo": "defensa",
+                    "descripcion": "Muro digital que reduce ataques directos.",
+                    "reglas": "Actívala para que una acusación dirigida a ti deba ser validada por otra persona antes de tener efecto."
+                },
+                {
+                    "nombre": "Prompt Incisivo",
+                    "tipo": "arma",
+                    "descripcion": "Pregunta construida para cortar evasivas.",
+                    "reglas": "Formulas un prompt: el jugador objetivo debe responder en menos de 15 segundos; fallo genera pista para ti."
+                },
+                {
+                    "nombre": "Cache de Recuerdos",
+                    "tipo": "poder",
+                    "descripcion": "Almacén que reproduce fragmentos de conversaciones pasadas.",
+                    "reglas": "Solicitas el cache sobre un encuentro: el moderador confirma si hubo contradicción y otorga pista si la hubo."
+                },
+                {
+                    "nombre": "Modo Aprendiz",
+                    "tipo": "defensa",
+                    "descripcion": "Modo que te hace parecer inofensivo y colabora con otros.",
+                    "reglas": "Al activarlo, puedes ofrecer una pista útil a otro jugador a cambio de que no te acuse durante una ronda."
                 }
             ]
         }
@@ -299,10 +755,34 @@
             "disfraz": "Cejas marcadas, flores, vestido mexicano, chal; presencia artística.",
             "objetos": [
                 {
-                    "nombre": "Pincel de Verdad",
+                    "nombre": "Pincel que Desnuda",
                     "tipo": "arma",
-                    "descripcion": "Un pincel manchado que lleva la capacidad de pintar la emoción detrás de una coartada.",
-                    "reglas": "Al usarlo obligas a un jugador a describir el sentimiento que acompaña su coartada; si rehúsa o miente, pierde su próxima acción y queda en evidencia."
+                    "descripcion": "Pincel simbólico que retrata mentiras como deformidades.",
+                    "reglas": "Proyectas un retrato verbal de alguien: si es inexacto según el moderador, la persona retratada recibe una pista en contra."
+                },
+                {
+                    "nombre": "Paleta de Verdades",
+                    "tipo": "poder",
+                    "descripcion": "Paleta con colores que revelan el tono emocional verdadero.",
+                    "reglas": "Aplicas un color a una declaración: el moderador indica si la emoción percibida concuerda; discrepancia genera pista."
+                },
+                {
+                    "nombre": "Chal de Dolor",
+                    "tipo": "defensa",
+                    "descripcion": "Prenda que te protege de ataques triviales y exageraciones.",
+                    "reglas": "Usándolo, las críticas personales hacia ti se consideran menos relevantes y no generan pistas durante una ronda."
+                },
+                {
+                    "nombre": "Cuadro Incompleto",
+                    "tipo": "poder",
+                    "descripcion": "Obra que invita a completar la historia ajena.",
+                    "reglas": "Presentas el cuadro: pides a un jugador que explique un vacío narrativo; si falla en ofrecer coherencia, obtienes una pista."
+                },
+                {
+                    "nombre": "Flor de Exposición",
+                    "tipo": "arma",
+                    "descripcion": "Flor que obliga a una confesión artística sobre un acto reciente.",
+                    "reglas": "Se la colocas a un jugador: debe describir sinceramente una motivación detrás de su último acto; mentira otorga pista."
                 }
             ]
         },
@@ -314,10 +794,34 @@
             "disfraz": "Bata, pelo recogido, gafas, libreta; estética científica vintage.",
             "objetos": [
                 {
-                    "nombre": "Vial Radiante",
+                    "nombre": "Geiger de Bolsillo",
+                    "tipo": "poder",
+                    "descripcion": "Pequeño detector para señalar anomalías en objetos.",
+                    "reglas": "Lo pasas por un objeto: si detecta 'actividad', el moderador confirma relevancia y te entrega una pista."
+                },
+                {
+                    "nombre": "Frasco Aislante",
                     "tipo": "defensa",
-                    "descripcion": "Un pequeño frasco para analizar pistas que brilla si una evidencia es auténtica o peligrosa.",
-                    "reglas": "Al analizar una pista con el vial confirmas su autenticidad; si la pista resulta falsa, el jugador que la presentó queda expuesto y pierde su siguiente acción."
+                    "descripcion": "Contenedor para guardar evidencia peligrosa sin contaminarla.",
+                    "reglas": "Guardas una pista física dentro: nadie puede usarla hasta que la liberes tú."
+                },
+                {
+                    "nombre": "Etiqueta de Procedencia",
+                    "tipo": "poder",
+                    "descripcion": "Etiqueta que fuerza a documentar el origen de una prueba.",
+                    "reglas": "Al etiquetar una prueba, forzas a su poseedor a decir dónde la obtuvo; incoherencias generan pista."
+                },
+                {
+                    "nombre": "Guantes de Precisión",
+                    "tipo": "defensa",
+                    "descripcion": "Guantes para manipular pruebas sin alterarlas.",
+                    "reglas": "Si manipulas una evidencia con ellos, evita que otro pueda descartarla por contaminación (protege la validez una vez)."
+                },
+                {
+                    "nombre": "Informe Radiactivo",
+                    "tipo": "arma",
+                    "descripcion": "Documento que liga un objeto a una fuente peligrosa.",
+                    "reglas": "Presentas el informe sobre un objeto: si es aceptado por el moderador, ese objeto cuenta como pista inmediata."
                 }
             ]
         },
@@ -329,10 +833,34 @@
             "disfraz": "Años 30: abrigo, perlas, libreta; aura de escritora-detective.",
             "objetos": [
                 {
-                    "nombre": "Caja de Coartadas",
+                    "nombre": "Libreta de Coartadas",
                     "tipo": "poder",
-                    "descripcion": "Una caja con pistas ordenadas que te permite hurgar suavemente en la historia de alguien hasta encontrar la falla.",
-                    "reglas": "Al abrirla sobre un jugador puedes forzarle a revisar públicamente su última coartada; si aparece incoherencia, ese jugador pierde dos acciones."
+                    "descripcion": "Cuaderno donde comparas testimonios y detectas fallos.",
+                    "reglas": "Si relacionas dos declaraciones incompatibles, obtienes una pista que señala la contradicción."
+                },
+                {
+                    "nombre": "Sombrilla de Señales",
+                    "tipo": "defensa",
+                    "descripcion": "Sombrilla que te protege de ataques personales y rumores.",
+                    "reglas": "Mientras la sostengas, una acusación pública hacia ti requiere dos testigos para ser válida."
+                },
+                {
+                    "nombre": "Pluma Verificadora",
+                    "tipo": "arma",
+                    "descripcion": "Pluma con la que firmas una hipótesis exigible.",
+                    "reglas": "Planteas una hipótesis formal: el acusado debe refutarla con hechos; si no puede, obtienes pista."
+                },
+                {
+                    "nombre": "Mapa de Escenas",
+                    "tipo": "poder",
+                    "descripcion": "Mapa que reconstruye movimientos y falseos.",
+                    "reglas": "Traza la escena de un evento y pide confirmación: si alguien no puede justificar su posición, gana pista."
+                },
+                {
+                    "nombre": "Té del Interrogatorio",
+                    "tipo": "arma",
+                    "descripcion": "Taza refinada que acompaña preguntas íntimas.",
+                    "reglas": "Ofreces té a un jugador: durante su toma debe responder una pregunta directa; respuesta insincera otorga pista."
                 }
             ]
         },
@@ -344,10 +872,34 @@
             "disfraz": "Aviadora: cazadora, gafas, bufanda, gorro.",
             "objetos": [
                 {
-                    "nombre": "Bitácora de Ruta",
+                    "nombre": "Brújula de Trayectorias",
                     "tipo": "poder",
-                    "descripcion": "Un cuaderno de aviadora donde registras y reconstruyes desplazamientos con precisión rigurosa.",
-                    "reglas": "Usándola reconstruyes el movimiento de un jugador durante las dos rondas previas y obtienes esa información como pista verificable."
+                    "descripcion": "Instrumento para trazar movimientos y detectar incoherencias de ruta.",
+                    "reglas": "Traza el recorrido de un jugador; si su ruta no coincide con testimonios, obtienes una pista."
+                },
+                {
+                    "nombre": "Mapa Plegable",
+                    "tipo": "poder",
+                    "descripcion": "Mapa donde marcan posibles pasillos y atajos.",
+                    "reglas": "Revelas un atajo sospechoso: si el moderador confirma su existencia, obtienes una pista extra."
+                },
+                {
+                    "nombre": "Gafas de Navegación",
+                    "tipo": "defensa",
+                    "descripcion": "Gafas que te permiten ver contradicciones en coordenadas.",
+                    "reglas": "Actívalas para bloquear una falsa coartada basada en tiempos y posiciones durante una ronda."
+                },
+                {
+                    "nombre": "Bitácora de Vuelos",
+                    "tipo": "arma",
+                    "descripcion": "Registro donde apuntas movimientos ajenos y los confrontas.",
+                    "reglas": "Presentas la bitácora contra alguien: si el moderador confirma inconsistencia, se convierte en pista."
+                },
+                {
+                    "nombre": "Señal de Aterrizaje",
+                    "tipo": "poder",
+                    "descripcion": "Marca que forzar una reunión en un punto concreto.",
+                    "reglas": "Designas un punto de encuentro para tres jugadores; lo dicho allí se considera más relevante y puede generar pista."
                 }
             ]
         },
@@ -359,10 +911,34 @@
             "disfraz": "Pelo alborotado, bigote, jersey/traje vintage, pizarrita.",
             "objetos": [
                 {
-                    "nombre": "Teorema Desplegable",
+                    "nombre": "Pizarra Relativa",
                     "tipo": "poder",
-                    "descripcion": "Una pizarra portátil donde ensamblas pistas hasta convertirlas en una teoría que empuja al grupo a refutarla o aceptarla.",
-                    "reglas": "Propones una teoría basada en hasta dos pistas; si nadie la refuta en una ronda con evidencia nueva, la teoría se considera confirmada y otorga una pista adicional."
+                    "descripcion": "Pizarra para proponer teorías que reorganizan la interpretación de pistas.",
+                    "reglas": "Planteas una hipótesis: si el grupo la acepta, una pista previamente dispersa se reinterpreta a tu favor."
+                },
+                {
+                    "nombre": "Cinta Métrica Temporal",
+                    "tipo": "poder",
+                    "descripcion": "Instrumento para medir secuencias y demostrar imposibilidades.",
+                    "reglas": "Mides tiempos de declaraciones; si demuestras imposibilidad temporal, obtienes pista."
+                },
+                {
+                    "nombre": "Bolígrafo de Deducción",
+                    "tipo": "arma",
+                    "descripcion": "Herramienta para escribir una deducción que obliga a respuesta.",
+                    "reglas": "Escribes una deducción formal y la presentas: el acusado debe refutarla con hechos o ceder y entregar pista."
+                },
+                {
+                    "nombre": "Abrigo de Teoría",
+                    "tipo": "defensa",
+                    "descripcion": "Abrigo que protege ante ataques emocionales con lógica fría.",
+                    "reglas": "Póntelo para convertir una acusación emocional en un ejercicio lógico que requiere evidencia para prosperar."
+                },
+                {
+                    "nombre": "Relé de Ecuaciones",
+                    "tipo": "poder",
+                    "descripcion": "Conjunto de ecuaciones que simplifican una hipótesis confusa.",
+                    "reglas": "Ofreces el relé: si alguien prueba que una coartada no cuadra matemáticamente, obtienes pista."
                 }
             ]
         },
@@ -374,10 +950,34 @@
             "disfraz": "Traje clásico, pajarita, puro falso, sombrero.",
             "objetos": [
                 {
-                    "nombre": "Mapa de Guerra",
+                    "nombre": "Mapa de Operaciones",
+                    "tipo": "poder",
+                    "descripcion": "Mapa para asignar tareas y coordinar búsquedas.",
+                    "reglas": "Organizas al grupo en equipos: si cumplen la asignación, obtienes una pista por equipo que entregue resultados."
+                },
+                {
+                    "nombre": "Orden Ejecutiva",
+                    "tipo": "poder",
+                    "descripcion": "Documento que impone una decisión durante una ronda.",
+                    "reglas": "Emités una orden: obliga a una acción concreta (ej.: 'todos muestren un objeto'); incumplimiento genera pista en contra."
+                },
+                {
+                    "nombre": "Sombrero de Estratega",
                     "tipo": "defensa",
-                    "descripcion": "Un mapa con fichas y tiempos que te permite coordinar y proteger a aliados bajo estrategia firme.",
-                    "reglas": "Al usarlo puedes asignar protección a un aliado durante una ronda (queda a salvo de una acusación directa) y reorganizar el orden de dos acciones entre jugadores."
+                    "descripcion": "Sombrero que te da autoridad adicional en debates.",
+                    "reglas": "Mientras lo lleves, una de tus propuestas cuenta como doble en la votación de grupo."
+                },
+                {
+                    "nombre": "Teléfono de Guerra",
+                    "tipo": "arma",
+                    "descripcion": "Línea directa para filtrar información y presionar aliados.",
+                    "reglas": "Llamas simbólicamente a un jugador y le entregas una instrucción que debe seguir; desobedecer provoca que ese jugador pierda una pista."
+                },
+                {
+                    "nombre": "Informe de Moral",
+                    "tipo": "defensa",
+                    "descripcion": "Documento motivador que calma acusaciones internas.",
+                    "reglas": "Presentas el informe y reduces la hostilidad en el grupo: la siguiente acusación pública pierde fuerza y no genera pista plena."
                 }
             ]
         }

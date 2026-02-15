@@ -62,5 +62,4 @@ def generate_items(num_items=5):
         print(f"Error llamando a OpenAI: {e}")
 
 if __name__ == "__main__":
-    # Por defecto 1, pero puedes cambiarlo aquí a 2, 3, etc.
-    generate_items(num_items=1)
+    generate_items()
