@@ -8,6 +8,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 backend/experiments/output/
+backend/experiments/fotos/
+backend/experiments/fotos
+backend/experiments/fotos_personajes/
+backend/cluedo_fichas_*/
+backend/cluedo_fichas_pdf_*/
 backend/experiments/characters_data.json
 backend/experiments/characters_with_items.json
 
