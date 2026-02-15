@@ -1,0 +1,21 @@
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+backend/experiments/output/
+backend/experiments/characters_data.json
+backend/experiments/characters_with_items.json
+
+# Node
+node_modules/
+frontend/.next/
+frontend/out/
+
+# OS files
+.DS_Store
+Thumbs.db
