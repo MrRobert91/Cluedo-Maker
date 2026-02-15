@@ -6,6 +6,7 @@ Utiliza GPT Image 1.5 de OpenAI para transformar las fotos reales en los persona
 import os
 import json
 import base64
+import sys
 from pathlib import Path
 from openai import OpenAI
 import re
@@ -162,6 +163,9 @@ Character costume and styling: {character_data['disfraz']}
 
 Character personality and demeanor: {character_data['como_es']}
 
+Comedic direction: push visual absurdity and humor with a ridiculous, expressive pose and a rich, over-the-top background full of funny details related to the character.
+Goal: the image should provoke laughter at first glance while staying coherent with the character fantasy.
+
 Photography style: Professional portrait, dramatic cinematic lighting, high quality photorealistic render, themed background appropriate to the character concept."""
     
     return prompt
@@ -189,9 +193,11 @@ Character personality for reference (affects styling and mood, NOT facial featur
 Character backstory and narrative context (use this to define scene mood, symbolism, and atmosphere, NOT to alter facial identity): {character_data['bio']}
 
 Creative direction:
-- Use a funny, playful, and slightly ridiculous pose, while still coherent with the character.
-- Show the character doing an iconic or typical action for that role.
-- Include absurd but harmless comedic elements in the background tied to the character and bio context.
+- Use a very funny, playful, and intentionally ridiculous pose, while still coherent with the character.
+- Show the character doing an iconic or typical action for that role in an exaggerated comedic way.
+- Include absurd, harmless, laugh-out-loud background elements strongly tied to the character and bio context.
+- Build a rich background with multiple humorous visual details (props, signs, objects, mini gags) that reward looking closely.
+- Primary objective: make people burst out laughing when they see the image.
 - Keep the scene readable, visually clear, and photorealistic.
 
 Safety and style constraints: fully clothed, non-sexual, non-explicit, PG-13 tone.
@@ -218,8 +224,8 @@ def generate_character_image_dalle3(photo_path, character_data):
         response = client.images.generate(
             model="dall-e-3",
             prompt=prompt,
+            size="auto",
             n=1,
-            size="1024x1024",
             quality="standard"
         )
         
@@ -337,8 +343,38 @@ def create_run_output_dir(base_output_dir):
     return run_output_dir
 
 
+class TeeStream:
+    """Duplica la salida a consola y fichero."""
+
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, data):
+        for stream in self.streams:
+            stream.write(data)
+
+    def flush(self):
+        for stream in self.streams:
+            stream.flush()
+
+
+def setup_run_logging(run_output_dir):
+    """Configura el guardado de logs de la ejecución en fichero."""
+    log_path = run_output_dir / "generation.log"
+    log_file = open(log_path, "w", encoding="utf-8")
+
+    sys.stdout = TeeStream(sys.__stdout__, log_file)
+    sys.stderr = TeeStream(sys.__stderr__, log_file)
+
+    return log_file, log_path
+
+
 def main():
     """Función principal."""
+
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+    log_file = None
     
     # ============================================
     # CONFIGURACIÓN: Selecciona el método de generación
@@ -350,75 +386,87 @@ def main():
     GENERATION_METHOD = "gpt-image-1.5"  # Cambia esto para usar otro método
     # ============================================
     
-    print(f"\nMétodo de generación seleccionado: {GENERATION_METHOD}")
-    print(f"{'='*60}\n")
-    
-    # Crear directorio de salida para esta ejecución
-    run_output_dir = create_run_output_dir(OUTPUT_DIR)
-    print(f"Carpeta de generación actual: {run_output_dir.name}\n")
-    
-    # Verificar que existe la carpeta de fotos
-    if not FOTOS_DIR.exists():
-        print(f"Error: La carpeta {FOTOS_DIR} no existe.")
-        print("Por favor, crea la carpeta 'fotos' y añade las imágenes de los participantes.")
-        return
-    
-    # Cargar personajes
-    print("Cargando personajes...")
-    characters = load_characters()
-    print(f"Se cargaron {len(characters)} personajes.\n")
-    
-    # Seleccionar la función de generación según el método configurado
-    if GENERATION_METHOD == "dalle3":
-        generate_function = generate_character_image_dalle3
-        method_label = "dalle3"
-    elif GENERATION_METHOD == "gpt-image-1.5":
-        generate_function = generate_character_image_gpt_image_15
-        method_label = "gpt-image-1.5"
-    else:
-        print(f"Error: Método de generación '{GENERATION_METHOD}' no válido.")
-        print("Opciones válidas: 'dalle3', 'gpt-image-1.5'")
-        return
-    
-    # Procesar cada personaje
-    success_count = 0
-    for person_name, character_data in characters.items():
-        print(f"\n{'='*60}")
-        print(f"Procesando: {character_data['person_name']} -> {character_data['character_name']}")
-        print(f"{'='*60}")
-        
-        # Buscar la foto correspondiente
-        photo_path = find_matching_photo(person_name, FOTOS_DIR)
-        
-        if not photo_path:
-            print(f"[ADVERTENCIA] No se encontro foto para {character_data['person_name']}")
-            print(f"   Busca un archivo que contenga '{person_name}' en la carpeta fotos/")
-            continue
-        
-        print(f"[OK] Foto encontrada: {photo_path.name}")
-        
-        # Generar imagen del personaje usando el método seleccionado
-        image_base64 = generate_function(photo_path, character_data)
-        
-        if image_base64:
-            # Guardar imagen con timestamp y método de generación
-            timestamp = datetime.now().strftime("%d-%m-%Y--%H-%M")
-            output_filename = f"{person_name}_{character_data['character_name'].replace(' ', '_').replace('/', '_')}_img_{method_label}_{timestamp}.png"
-            output_path = run_output_dir / output_filename
-            
-            print(f"Guardando imagen...")
-            if save_base64_image(image_base64, output_path):
-                print(f"[OK] Imagen guardada: {output_filename}")
-                success_count += 1
-            else:
-                print(f"[ERROR] Error al guardar la imagen")
+    try:
+        # Crear directorio de salida para esta ejecución
+        run_output_dir = create_run_output_dir(OUTPUT_DIR)
+
+        # Activar guardado de logs en fichero (además de consola)
+        log_file, log_path = setup_run_logging(run_output_dir)
+
+        print(f"\nMétodo de generación seleccionado: {GENERATION_METHOD}")
+        print(f"{'='*60}\n")
+        print(f"Carpeta de generación actual: {run_output_dir.name}")
+        print(f"Fichero de log: {log_path}\n")
+
+        # Verificar que existe la carpeta de fotos
+        if not FOTOS_DIR.exists():
+            print(f"Error: La carpeta {FOTOS_DIR} no existe.")
+            print("Por favor, crea la carpeta 'fotos' y añade las imágenes de los participantes.")
+            return
+
+        # Cargar personajes
+        print("Cargando personajes...")
+        characters = load_characters()
+        print(f"Se cargaron {len(characters)} personajes.\n")
+
+        # Seleccionar la función de generación según el método configurado
+        if GENERATION_METHOD == "dalle3":
+            generate_function = generate_character_image_dalle3
+            method_label = "dalle3"
+        elif GENERATION_METHOD == "gpt-image-1.5":
+            generate_function = generate_character_image_gpt_image_15
+            method_label = "gpt-image-1.5"
         else:
-            print(f"[ERROR] Error al generar la imagen")
-    
-    print(f"\n{'='*60}")
-    print(f"Proceso completado: {success_count}/{len(characters)} imágenes generadas")
-    print(f"Las imágenes se guardaron en: {run_output_dir}")
-    print(f"{'='*60}")
+            print(f"Error: Método de generación '{GENERATION_METHOD}' no válido.")
+            print("Opciones válidas: 'dalle3', 'gpt-image-1.5'")
+            return
+
+        # Procesar cada personaje
+        success_count = 0
+        for person_name, character_data in characters.items():
+            print(f"\n{'='*60}")
+            print(f"Procesando: {character_data['person_name']} -> {character_data['character_name']}")
+            print(f"{'='*60}")
+
+            # Buscar la foto correspondiente
+            photo_path = find_matching_photo(person_name, FOTOS_DIR)
+
+            if not photo_path:
+                print(f"[ADVERTENCIA] No se encontro foto para {character_data['person_name']}")
+                print(f"   Busca un archivo que contenga '{person_name}' en la carpeta fotos/")
+                continue
+
+            print(f"[OK] Foto encontrada: {photo_path.name}")
+
+            # Generar imagen del personaje usando el método seleccionado
+            image_base64 = generate_function(photo_path, character_data)
+
+            if image_base64:
+                # Guardar imagen con timestamp y método de generación
+                timestamp = datetime.now().strftime("%d-%m-%Y--%H-%M")
+                output_filename = f"{person_name}_{character_data['character_name'].replace(' ', '_').replace('/', '_')}_img_{method_label}_{timestamp}.png"
+                output_path = run_output_dir / output_filename
+
+                print(f"Guardando imagen...")
+                if save_base64_image(image_base64, output_path):
+                    print(f"[OK] Imagen guardada: {output_filename}")
+                    success_count += 1
+                else:
+                    print(f"[ERROR] Error al guardar la imagen")
+            else:
+                print(f"[ERROR] Error al generar la imagen")
+
+        print(f"\n{'='*60}")
+        print(f"Proceso completado: {success_count}/{len(characters)} imágenes generadas")
+        print(f"Las imágenes se guardaron en: {run_output_dir}")
+        print(f"{'='*60}")
+
+    finally:
+        # Restaurar streams y cerrar fichero de log
+        sys.stdout = original_stdout
+        sys.stderr = original_stderr
+        if log_file is not None:
+            log_file.close()
 
 
 if __name__ == "__main__":
