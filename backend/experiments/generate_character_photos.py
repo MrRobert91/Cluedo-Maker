@@ -182,19 +182,21 @@ CRITICAL: Keep the person's face, facial structure, eyes, nose, mouth, and overa
 - Lighting and atmosphere to match the character's personality
 
 Framing and composition requirements (mandatory):
-- Medium shot (waist-up): the person must be visible from head to waist.
+- Full-body shot: the person must be visible from head to toe.
 - Face fully visible and never cropped.
 - Leave clear headroom above the head (empty space on top of frame).
 - Keep the head centered and comfortably inside the frame.
-- Do not crop forehead, chin, hair, or sides of the face.
+- Do not crop forehead, chin, hair, sides of the face, hands, or feet.
 
 Character personality for reference (affects styling and mood, NOT facial features): {character_data['como_es']}
 
 Character backstory and narrative context (use this to define scene mood, symbolism, and atmosphere, NOT to alter facial identity): {character_data['bio']}
 
 Creative direction:
-- Use a very funny, playful, and intentionally ridiculous pose, while still coherent with the character.
+- VERY IMPORTANT: use a clearly funny, absurd, and intentionally ridiculous pose, while still coherent with the character.
+- The character must be actively doing something (dynamic action, not static pose).
 - Show the character doing an iconic or typical action for that role in an exaggerated comedic way.
+- The character must be holding or using at least one representative but absurd prop/object linked to the character.
 - Include absurd, harmless, laugh-out-loud background elements strongly tied to the character and bio context.
 - Build a rich background with multiple humorous visual details (props, signs, objects, mini gags) that reward looking closely.
 - Primary objective: make people burst out laughing when they see the image.
