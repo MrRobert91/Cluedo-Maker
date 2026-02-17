@@ -268,7 +268,7 @@ def generate_character_image_gpt_image_15(photo_path, character_data):
                 model="gpt-image-1.5",
                 image=[image_file],
                 prompt=edit_prompt,
-                size="1024x1024",
+                size="1536x1024",
                 quality="low"
                 
             )
